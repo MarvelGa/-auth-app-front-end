@@ -2,10 +2,15 @@
 body{
   margin: 0;
   padding: 0;
-  background-color: whitesmoke;
+  background-color: var(--primary-color);
 }
 
 .container{
   width: 70%;
   display: flex;
+}
+:root{
+  --primary-color: whitesmoke;
+  --secondary-color: slategrey;
+  --accent-color: forestgreen;
 }

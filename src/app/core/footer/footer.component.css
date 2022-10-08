@@ -6,7 +6,7 @@
 }
 
 footer{
-  background-color: slategrey;
+  background-color: var(--secondary-color);
 }
 
 .container{

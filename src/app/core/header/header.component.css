@@ -1,5 +1,5 @@
 header {
-  background-color: slategrey;
+  background-color: var(--secondary-color);
 }
 
 .container {
