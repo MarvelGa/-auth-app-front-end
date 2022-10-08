@@ -1,4 +1,6 @@
 import {Component, OnInit} from '@angular/core';
+import {AuthService} from "../../shared/services/auth.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-login',
@@ -7,9 +9,9 @@ import {Component, OnInit} from '@angular/core';
 })
 export class LoginComponent implements OnInit {
   login = '';
-  password = ''
+  password = '';
 
-  constructor() {
+  constructor(private authService: AuthService, private router: Router) {
   }
 
   ngOnInit(): void {
@@ -17,12 +19,17 @@ export class LoginComponent implements OnInit {
   }
 
   authorization(event: any): void {
-    this.cleanErrorMessage();
     event.preventDefault();
-    this.checkInputtedData();
+    this.cleanErrorMessage();
+    if(this.isInputtedDataValid()){
+      if (this.authService.login(this.login, this.password)){
+        this.router.navigate(['main']);
+      }
+   }
+
   }
 
-  checkInputtedData(): void {
+  isInputtedDataValid(): boolean {
     const errors = [];
     const emailRegExp = /^[A-Za-z0-9_\-.]+[@][a-z]+[.][a-z]{3}$/;
     const loginRegExp = /^[A-Za-z0-9_\-.@!]{8,}/;
@@ -41,9 +48,11 @@ export class LoginComponent implements OnInit {
         liElement.innerHTML = `${el}`;
         ulElement.appendChild(liElement);
       });
+      return false;
     } else {
       let message = <HTMLVideoElement>document.querySelector('#message');
       message.innerText = 'successful';
+      return true;
     }
   }
 

@@ -7,6 +7,7 @@ import { LoginModule } from "./pages/login/login.module";
 import { AppRoutingModule } from './app-routing.module';
 import { MainModule} from "./pages/main/main.module";
 import { LoginRoutingModule } from './pages/login/login-routing.module';
+import { MainRoutingModule } from "./pages/main/main-routing.module";
 
 
 @NgModule({
@@ -20,7 +21,8 @@ import { LoginRoutingModule } from './pages/login/login-routing.module';
     LoginModule,
     AppRoutingModule,
     MainModule,
-    LoginRoutingModule
+    LoginRoutingModule,
+    MainRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]
