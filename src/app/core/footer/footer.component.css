@@ -1,0 +1,16 @@
+:host{
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+footer{
+  background-color: slategrey;
+}
+
+.container{
+  margin: 0 auto;
+  justify-content: right;
+  padding: 15px;
+}
