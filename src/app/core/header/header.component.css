@@ -1,0 +1,9 @@
+header {
+  background-color: slategrey;
+}
+
+.container {
+  margin: 0 auto;
+  justify-content: space-between;
+  padding: 15px;
+}
