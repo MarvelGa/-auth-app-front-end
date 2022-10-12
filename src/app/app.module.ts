@@ -8,6 +8,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { MainModule} from "./pages/main/main.module";
 import { LoginRoutingModule } from './pages/login/login-routing.module';
 import { MainRoutingModule } from "./pages/main/main-routing.module";
+import { HttpClientModule } from "@angular/common/http";
 
 
 @NgModule({
@@ -22,7 +23,8 @@ import { MainRoutingModule } from "./pages/main/main-routing.module";
     AppRoutingModule,
     MainModule,
     LoginRoutingModule,
-    MainRoutingModule
+    MainRoutingModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
