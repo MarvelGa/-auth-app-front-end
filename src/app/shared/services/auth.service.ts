@@ -1,28 +1,31 @@
 import {Injectable} from "@angular/core";
+import {HttpClient, HttpHeaders, HttpParams} from "@angular/common/http";
 
 @Injectable({
   providedIn: 'root'
 })
 
 export class AuthService {
-  private readonly JWT_TOKEN = 'JWT_TOKEN';
-  currentUserEmail: string = '';
-  isUserAuthenticated = false;
 
-  constructor() {
+  constructor(private http: HttpClient) {
   }
 
-  login(email: string, password: string): boolean {
-   return true;
+  login(userData: any) {
+    const customHeaders = new HttpHeaders({
+      'authenticationKey': 'test111'
+    });
+    const customParams = new HttpParams()
+      .set('userRole', 'admin');
+    return this.http.post("http://localhost:8080/api/users", userData, {headers: customHeaders, params: customParams});
   }
 
   logout() {
-
+    localStorage.removeItem('token');
+    localStorage.removeItem('userLogin');
   }
 
   isAuthenticated() {
-    /*return localStorage.getItem('token');*/
-    return true;
+    return localStorage.getItem('token');
   }
 
 }
