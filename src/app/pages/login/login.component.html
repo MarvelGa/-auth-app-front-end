@@ -1,3 +1,4 @@
+<div *ngIf="getUserAuthentication()==null" class="login-logout" >
 <div class="container">
   <div class="login-form">
     <form (submit)="authorization($event)" ngNativeValidate  action="#">
@@ -18,5 +19,6 @@
       </div>
     </form>
   </div>
+</div>
 </div>
 
