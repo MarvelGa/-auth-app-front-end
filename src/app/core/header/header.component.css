@@ -7,3 +7,14 @@ header {
   justify-content: space-between;
   padding: 15px;
 }
+
+.login-logout-button {
+  background-color: transparent;
+  background-repeat: no-repeat;
+  border: none;
+  cursor: pointer;
+  overflow: hidden;
+  outline: none;
+  color: white;
+  margin: 0 10px;
+}
