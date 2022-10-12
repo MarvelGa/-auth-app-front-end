@@ -10,22 +10,40 @@ import {Router} from "@angular/router";
 export class LoginComponent implements OnInit {
   login = '';
   password = '';
-
+  private readonly JWT_TOKEN = 'JWT_TOKEN';
   constructor(private authService: AuthService, private router: Router) {
   }
 
   ngOnInit(): void {
-
   }
 
   authorization(event: any): void {
     event.preventDefault();
     this.cleanErrorMessage();
-    if(this.isInputtedDataValid()){
-      if (this.authService.login(this.login, this.password)){
-        this.router.navigate(['main']);
+    if (this.isInputtedDataValid()) {
+      const userData = {
+        login: this.login,
+        password: this.password
       }
-   }
+
+      this.authService.login(userData).subscribe((data : any)=> {
+          console.log(data);
+          console.log(data.login!=null);
+          if (data.login!=null) {
+            localStorage.setItem('token', this.JWT_TOKEN);
+            localStorage.setItem('userLogin', this.login);
+            this.router.navigate(['main']);
+          }else{
+            console.log("From else");
+            let ulElement = <HTMLVideoElement>document.querySelector('#message');
+            ulElement.innerText = "Login or Password is not correct!";
+          }
+        }, (error) => {
+          console.log("No data" );
+        }
+      );
+
+    }
 
   }
 
@@ -50,8 +68,6 @@ export class LoginComponent implements OnInit {
       });
       return false;
     } else {
-      let message = <HTMLVideoElement>document.querySelector('#message');
-      message.innerText = 'successful';
       return true;
     }
   }
@@ -61,5 +77,9 @@ export class LoginComponent implements OnInit {
     let message = <HTMLVideoElement>document.querySelector('#message');
     message.innerText = '';
     message.innerHTML = '';
+  }
+
+  getUserAuthentication() {
+    return this.authService.isAuthenticated();
   }
 }
